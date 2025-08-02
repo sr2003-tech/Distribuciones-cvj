@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DISTRIBUCION CVJ SAS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+
+</head>
+<body class="pagina-busqueda">
+
+<header class="encabezado">
+  <div class="logo-redes">
+    <div class="logo">
+      <img src="img/Logo.jpeg" alt="Logo de la empresa">
+    </div>
+
+  <form onsubmit="buscarProducto(event)" class="formulario-busqueda">
+    <input type="text" id="busqueda" placeholder="Buscar productos..." required>
+        <button type="submit">
+  <i class="fas fa-search"></i>
+</button>
+  </form>
+
+    <div class="redes">
+ 
+        <div class="icono-red instagram">
+         <a href="https://www.instagram.com/distribuciones_cvj" target="_blank" class="icono-red">   
+         <img src="img/Instagram.png" alt="Instagram">
+         </a>
+        </div>
+
+      <div class="icono-red whatsapp">
+        <a href="https://wa.me/573229775960" target="_blank" class="icono-red"> 
+      <img src="img/WhatsAp.png" alt="WhatsApp">
+       </a>
+    </div>
+          <div class="icono-red facebook">
+         <a href="https://www.facebook.com/Distribuciones CVJ SAS" target="_blank" class="icono-red">
+          <img src="img/Facebook.png" alt="Facebook"> 
+         </a>
+        </div>
+
+    </div>
+  </div>
+</header>
+
+
+
+<script>
+  function buscarProducto(e) {
+    e.preventDefault();
+    const texto = document.getElementById('busqueda').value.trim();
+    if (texto) {
+      localStorage.setItem('terminoBusqueda', texto);
+      window.location.href = 'resultados.html';
+    }
+  }
+</script>
+
+<nav>
+        <ul>
+            <li><a href="../index.html">INICIO</a></li>
+            <li><a href="../nosotros.html">NOSOTROS</a>
+                    <ul class="submenu">
+                    <li><a href="nosotros.html#mision">Misión</a></li>
+                    <li><a href="nosotros.html#vision">Visión</a></li>
+                    <li><a href="nosotros.html#eslogan">Eslogan</a></li>
+                    <li><a href="nosotros.html#creadora">Creadora</a></li>
+                </ul>
+                </li>
+            <li><a href="../productos/productos.html">PRODUCTOS</a>
+                <ul class="submenu">
+                    <li><a href="../productos/productos.html#aseo">Productos de Aseo</a></li>
+                    <li><a href="productos2/productos2.html#brillo">Productos de Brillo</a></li>
+                    <li><a href="productos2/productos2.html#utensilios">Utensilios para Hogar</a></li>
+                    <li><a href="../productos3/productos3.html#cafeteria">Productos de Cafetería</a></li>
+                    <li><a href="../productos3/productos3.html#papeleria">Productos de Papeleria</a></li>
+                </ul>
+            </li>
+            <li><a href="../servicios.html">SERVICIOS</a>
+                <ul class="submenu">
+                    <li><a href="../servicios.html#capacitaciones">Capacitaciones</a></li>
+                </ul>
+            </li>
+            <li><a href="../contacto.html">CONTACTANOS</a>
+                <ul class="submenu">
+                    <li><a href="../contacto.html#tiktok">TikTok</a></li>
+                    <li><a href="../contacto.html#instagram">Instagram</a></li>
+                    <li><a href="../contacto.html#whatsapp">WhatsApp</a></li>
+                    <li><a href="../contacto.html#facebook">Facebook</a></li>
+                    <li><a href="../contacto.html#correo">Correo</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+
+
+
+  <div class="resultados-container" id="resultados"></div>
+
+<script>
+  // 1. Obtener el término desde localStorage
+  const query = localStorage.getItem("terminoBusqueda");
+
+  // 2. Mostrar texto inicial
+  const contenedor = document.getElementById("resultados");
+  if (!query) {
+    contenedor.innerHTML = `<p>No se proporcionó ningún término de búsqueda.</p>`;
+  } else {
+    contenedor.innerHTML = `<h2> <strong>${query}</strong></h2>`;
+  }
+
+  // 3. Función para buscar productos en múltiples páginas
+  async function buscarProductos() {
+    const archivos = [
+      "productos/productos.html",
+      "productos2/productos2.html",
+      "productos3/productos3.html"
+    ];
+
+    let resultados = [];
+
+    for (const archivo of archivos) {
+      try {
+        const respuesta = await fetch(archivo);
+        const html = await respuesta.text();
+        const contenedorTemporal = document.createElement("div");
+        contenedorTemporal.innerHTML = html;
+
+        const productos = contenedorTemporal.querySelectorAll(".productos li");
+
+        productos.forEach(producto => {
+          if (producto.innerText.toLowerCase().includes(query.toLowerCase())) {
+            // Clonar para modificar sin afectar el original
+            const li = producto.cloneNode(true);
+
+            // Crear botón
+            const boton = document.createElement("a");
+            boton.href = archivo;
+            boton.textContent = "Ir a la página";
+            boton.className = "boton-ir";
+            boton.target = "_blank";
+
+            // Insertar botón al final del contenido del producto
+            li.appendChild(boton);
+
+            resultados.push(li.outerHTML);
+          }
+        });
+
+      } catch (error) {
+        console.error(`Error cargando ${archivo}`, error);
+      }
+    }
+
+    if (resultados.length > 0) {
+      contenedor.innerHTML += `<ul class="productos">${resultados.join("")}</ul>`;
+    } else {
+      contenedor.innerHTML += `<p>No se encontraron resultados para <strong>${query}</strong>.</p>`;
+    }
+  }
+
+  // 4. Ejecutar búsqueda si hay query
+  if (query) {
+    buscarProductos();
+  }
+</script>
+
+
+    <footer>
+        <p>&copy; 2025 DISTRIBUCION CVJ SAS - Calidad y Confianza.</p>
+    </footer>
+
+</body>
+</html>

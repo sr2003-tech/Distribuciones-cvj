@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DISTRIBUCION CVJ SAS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+
+<header class="encabezado">
+  <div class="logo-redes">
+    <div class="logo">
+      <img src="img/Logo.jpeg" alt="Logo de la empresa">
+    </div>
+
+  <form onsubmit="buscarProducto(event)" class="formulario-busqueda">
+    <input type="text" id="busqueda" placeholder="Buscar productos..." required>
+    <button type="submit">
+  <i class="fas fa-search"></i>
+</button>
+
+    </button>
+  </form>
+
+
+    <div class="redes">
+ 
+        <div class="icono-red instagram">
+         <a href="https://www.instagram.com/distribuciones_cvj" target="_blank" class="icono-red">   
+         <img src="img/Instagram.png" alt="Instagram">
+         </a>
+        </div>
+
+      <div class="icono-red whatsapp">
+        <a href="https://wa.me/573229775960" target="_blank" class="icono-red"> 
+      <img src="img/WhatsAp.png" alt="WhatsApp">
+       </a>
+    </div>
+
+    </div>
+
+</header>
+
+
+
+<script>
+  function buscarProducto(e) {
+    e.preventDefault();
+    const texto = document.getElementById('busqueda').value.trim();
+    if (texto) {
+      localStorage.setItem('terminoBusqueda', texto);
+      window.location.href = 'resultados.html';
+    }
+  }
+</script>
+
+<nav>
+        <ul>
+            <li><a href="#">INICIO</a>
+
+        </ul>
+        <ul>
+            <li><a href="#">NOSOTROS</a>    
+                <ul class="submenu">
+                    <li><a href="nosotros.html#mision">Misión</a></li>
+                    <li><a href="nosotros.html#vision">Visión</a></li>
+                    <li><a href="nosotros.html#eslogan">Eslogan</a></li>
+                    <li><a href="nosotros.html#creadora">Creadora</a></li>
+                </ul>
+            </li>
+            <li><a href="#">PRODUCTOS</a>
+                <ul class="submenu">
+                    <li><a href="productos/productos.html">Productos de Aseo</a></li>
+                    <li><a href="productos2/productos2.html">Productos de Brillo</a></li>
+                    <li><a href="productos2/productos2.html">Utensilios para el Aseo</a></li>
+                    <li><a href="productos3/productos3.html">Productos de Cafetería</a></li>
+                    <li><a href="productos3/productos3.html">Productos de Papeleria</a></li>
+                </ul>
+            </li>
+            <li><a href="#">SERVICIOS</a>
+                <ul class="submenu">
+                    <li><a href="servicios.html#capacitaciones">Capacitaciones</a></li>
+                </ul>
+            </li>
+            <li><a href="#">CONTACTANOS</a>
+                <ul class="submenu">
+                    <li><a href="contacto.html#tiktok">TikTok</a></li>
+                    <li><a href="contacto.html#instagram">Instagram</a></li>
+                    <li><a href="contacto.html#whatsapp">WhatsApp</a></li>
+                    <li><a href="contacto.html#facebook">Facebook</a></li>
+                    <li><a href="contacto.html#correo">Correo</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+
+
+
+    <div class="espaciador"></div>
+
+
+     <!-- 🔥 Sección Productos Destacados -->
+    <section class="container productos-destacados">
+        <h2 class="titulo-seccion">PRODUCTOS DESTACADOS</h2>
+        <div class="contenedor-destacados">
+            <div class="card">
+               <img src="img/Ropa.jpg" alt=""> 
+                <h3>Productos especializados para el lavado de tu ropa</h3>
+                <p>Productos exclusivos para el cuidado de la fibra textil, dando limpieza y suavidad.</p>
+                <a href="detalle-producto.html" class="btn">Ver más</a>
+
+            </div>
+            <div class="card">
+                <img src="img/Limpia.png" alt="">
+                <h3>Limpiador desinfectante Multiusos</h3>
+                <p>Producto 3 en 1 limpia, desinfecta y te deja un agradable aroms </p>
+                <a href="detalle-producto.html" class="btn">Ver más</a>
+            </div>
+        </div>
+    </section>
+    
+
+     <!-- 🔻 Sección Categorías -->
+    <sec class="categorias">
+        
+        <section class="destacados">
+            <h2>Categorías</h2>
+            <div class="tarjeta">
+                <img src="img/Aseo.png" alt="Productos de Aseo">
+                <h3>Aseo</h3>
+                <p>Los mejores productos para tu hogar.</p>
+                <a href="productos/productos.html" class="btn">Ver más</a>
+            </div>
+            <div class="tarjeta">
+                <img src="img/Cafeteria.png" alt="Productos de Cafetería">
+                <h3>Cafetería</h3>
+                <p>Todo lo que necesitas para tu cafetería.</p>
+                <a href="productos3/productos3.html" class="btn">Ver más</a>
+            </div>
+            <div class="tarjeta">
+                <img src="img/papeleria.png" alt="Productos de Papelería">
+                <h3>Papelería</h3>
+                <p>Material escolar y de oficina de calidad.</p>
+                <a href="productos3/productos3.html" class="btn">Ver más</a>
+            </div>
+        </section>
+    
+
+<a href="https://wa.me/573229775960?text=Hola%2C%20quiero%20más%20información" 
+   class="whatsapp" 
+   target="_blank" 
+   title="Escríbenos por WhatsApp">
+   <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp">
+</a>
+
+
+
+
+
+    <footer>
+        <p>&copy; 2025 DISTRIBUCION CVJ SAS - Calidad y Confianza.</p>
+    </footer>
+
+
+</body>
+</html>
